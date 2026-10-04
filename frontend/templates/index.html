@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ReviewGuard | Fake Review Detection</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <header class="navbar">
+        <div class="brand">
+            <div class="brand-icon">RG</div>
+            <div>
+                <h1>ReviewGuard</h1>
+                <span>AI-Powered Review Analysis</span>
+            </div>
+        </div>
+        <div class="nav-actions">
+    <div class="status">
+        <span class="status-dot"></span>
+        ML Model Active
+    </div>
+
+    <button id="themeToggle" class="theme-toggle" onclick="toggleTheme()">
+        ☀️
+    </button>
+</div>
+    </header>
+
+    <main class="container">
+        <section class="hero">
+            <div class="hero-badge">MACHINE LEARNING • NLP</div>
+            <h2>Detect suspicious reviews<br><span>in seconds.</span></h2>
+            <p>
+                Enter a product review and let our trained NLP model estimate
+                whether it is genuine or potentially computer-generated.
+            </p>
+        </section>
+
+        <section class="card analyzer">
+            <div class="section-heading">
+                <div>
+                    <h3>Analyze a Review</h3>
+                    <p>Paste the complete review for the most reliable prediction.</p>
+                </div>
+                <span class="model-pill">TF-IDF + Logistic Regression</span>
+            </div>
+
+            <textarea id="reviewInput"
+                maxlength="10000"
+                placeholder="Example: The product arrived on time and works exactly as described..."></textarea>
+
+            <div class="input-footer">
+                <span id="counter">0 / 10000</span>
+                <button id="analyzeBtn" onclick="analyzeReview()">
+                    <span id="buttonText">Analyze Review</span>
+                    <span id="spinner" class="spinner hidden"></span>
+                </button>
+            </div>
+
+            <div id="errorBox" class="error hidden"></div>
+        </section>
+
+        <section id="resultSection" class="card result hidden">
+            <div class="result-top">
+                <div>
+                    <span class="result-label">PREDICTION</span>
+                    <h3 id="prediction">—</h3>
+                </div>
+                <div id="resultIcon" class="result-icon">✓</div>
+            </div>
+
+            <div class="confidence-row">
+                <div>
+                    <span>Confidence</span>
+                    <strong id="confidence">0%</strong>
+                </div>
+                <div class="progress">
+                    <div id="progressBar"></div>
+                </div>
+            </div>
+
+            <div class="probabilities">
+                <div class="prob-card">
+                    <span>Genuine</span>
+                    <strong id="genuineProbability">0%</strong>
+                </div>
+                <div class="prob-card">
+                    <span>Fake / Suspicious</span>
+                    <strong id="fakeProbability">0%</strong>
+                </div>
+            </div>
+
+            <div class="review-stats">
+                <div><span>Characters</span><strong id="charCount">0</strong></div>
+                <div><span>Words</span><strong id="wordCount">0</strong></div>
+            </div>
+        </section>
+
+        <section class="info-grid">
+            <div class="card info-card">
+                <div class="info-number">01</div>
+                <h3>Text Processing</h3>
+                <p>The review is cleaned and transformed using the same preprocessing and TF-IDF pipeline used during training.</p>
+            </div>
+            <div class="card info-card">
+                <div class="info-number">02</div>
+                <h3>ML Prediction</h3>
+                <p>The trained classifier analyzes learned linguistic patterns and returns a predicted class with probability.</p>
+            </div>
+            <div class="card info-card">
+                <div class="info-number">03</div>
+                <h3>Instant Result</h3>
+                <p>A responsive web interface displays the prediction and confidence on desktop, tablet, or mobile.</p>
+            </div>
+        </section>
+
+        <footer>
+            <p>Fake Review Detection • Machine Learning Practical Project</p>
+        </footer>
+    </main>
+
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>
