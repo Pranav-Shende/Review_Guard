@@ -115,11 +115,11 @@ def predict():
     except Exception as exc:
         return jsonify({"error": str(exc)}), 500
 
-if __name__ == "__main__":
-    try:
-        load_artifacts()
-        print("Model and TF-IDF vectorizer loaded successfully.")
-    except Exception as exc:
-        print(f"WARNING: {exc}")
+try:
+    load_artifacts()
+    print("Model and TF-IDF vectorizer loaded successfully.")
+except Exception as exc:
+    print(f"WARNING: {exc}")
 
+if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000, debug=True)
